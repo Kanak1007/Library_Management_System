@@ -1,0 +1,201 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration - Library Management System</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Registration</h2>
+        <form action="registerAdminServlet" method="POST">
+             Admin Name 
+            <label for="adminName">Name:</label>
+            <input type="text" id="adminName" name="adminName" required>
+
+             Library Name 
+            <label for="libraryName">Library Name:</label>
+            <input type="text" id="libraryName" name="libraryName" required>
+
+             Address 
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+             Email 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+             Role 
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+            </select>
+
+             Password 
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+             Confirm Password 
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+             Submit Button 
+            <button type="submit">Register</button>
+        </form>
+
+         Login Option 
+        <div class="login-redirect">
+            <p>Already have an account?</p>
+            <form action="login.jsp">
+                <button type="submit">Login</button>
+            </form>
+             OR you can use this instead of the form 
+             <a href="login.jsp">Click here to Login</a> 
+        </div>
+    </div>
+
+    <script src="script.js"></script>  Optional JavaScript for form validation 
+</body>
+</html>-->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <!-- Bootstrap & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #343a40, #212529);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .jumbotron {
+            background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1500&q=80') center center / cover no-repeat;
+            color: white;
+            padding: 5rem 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .jumbotron::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+            border-radius: 15px;
+        }
+
+        .jumbotron h1, .jumbotron p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .role-selection .card {
+            transition: transform 0.3s ease;
+        }
+
+        .role-selection .card:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 1rem;
+            margin-top: 4rem;
+        }
+
+        .btn-lg {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Library Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentLogin.jsp">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentRegistration.jsp">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="jumbotron text-center text-white">
+        <div class="container">
+            <h1 class="display-4">Welcome to Our Library!</h1>
+            <p class="lead">Manage your account, explore books, and dive into knowledge.</p>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.3);">
+            <p>Your digital library companion, now smarter and faster.</p>
+        </div>
+    </div>
+
+    <!-- Role Selection -->
+    <div class="container my-5 role-selection">
+        <h2 class="text-center mb-4">Choose Your Role</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm p-4 text-center">
+                    <h4>Student</h4>
+                    <p>Register to browse, borrow, and return books.</p>
+                    <a class="btn btn-primary btn-lg mt-2" href="studentRegistration.jsp">
+                        Join as Student
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm p-4 text-center">
+                    <h4>Admin</h4>
+                    <p>Register to manage books, students, and transactions.</p>
+                    <a class="btn btn-secondary btn-lg mt-2" href="adminRegistration.jsp">
+                        Join as Admin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <p>&copy; 2025 Library Management System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
