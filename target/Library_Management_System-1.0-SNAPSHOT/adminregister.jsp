@@ -5,11 +5,11 @@
     <title>Admin Registration | Library System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <style>
+        /* Your existing CSS styles */
         body {
             background: linear-gradient(to right, #fce4ec, #e1bee7);
             font-family: 'Segoe UI', sans-serif;
@@ -124,6 +124,12 @@
             color: #ab47bc;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
+        .error-message { /* Style for the error message */
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -137,6 +143,12 @@
         </div>
         <div class="register-body">
             <form action="registerAdminServlet" method="post">
+                <%-- Display error message if it exists --%>
+                <% if (request.getAttribute("error") != null) { %>
+                    <div class="alert alert-danger error-message" role="alert">
+                        <%= request.getAttribute("error") %>
+                    </div>
+                <% } %>
                 <div class="form-group">
                     <label class="form-label">Admin Name</label>
                     <div class="input-group">

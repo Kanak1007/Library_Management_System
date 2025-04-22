@@ -1,14 +1,6 @@
 package com.webkorps.librarymanagement.controller.Admin;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
-
 import com.webkorps.librarymanagement.service.AdminService;
-import com.webkorps.librarymanagement.dao.AdminDao;
-import com.webkorps.librarymanagement.utility.DBconnection;
 import com.webkorps.librarymanagement.utility.PasswordValidator;
 import com.webkorps.librarymanagement.model.*;
 import java.io.IOException;
@@ -19,16 +11,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/registerAdminServlet")
 public class AdminRegister extends HttpServlet {
     private AdminService adminService;
 
     @Override
     public void init() throws ServletException {
-     
-            adminService = new AdminService();
-        
+        adminService = new AdminService();
     }
 
     @Override
@@ -50,15 +39,20 @@ public class AdminRegister extends HttpServlet {
 
         Admin admin = new Admin(adminName, libraryName, address, email, role, password);
 
-        // Call the service to handle the registration logic
-        boolean isRegistered = adminService.register(admin);
+        try {
+            // Call the service to handle the registration logic
+            boolean isRegistered = adminService.register(admin); // Assuming your service method is named registerAdmin now
 
-        if (isRegistered) {
-            response.sendRedirect("adminlogin.jsp"); // Redirect to login page after registration
-        } else {
-            // If registration fails, it could be due to duplicate email
-            request.setAttribute("error", "Email already exists. Please login with your credentials.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminlogin.jsp");
+            if (isRegistered) {
+                response.sendRedirect("adminlogin.jsp"); // Redirect to login page after registration
+            } else {
+                request.setAttribute("error", "Registration failed. Please try again.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("adminregister.jsp");
+                dispatcher.forward(request, response);
+            }
+        } catch (RuntimeException e) {
+            request.setAttribute("error", e.getMessage()); // Directly set the message from the RuntimeException
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminregister.jsp");
             dispatcher.forward(request, response);
         }
     }

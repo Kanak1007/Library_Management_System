@@ -38,24 +38,46 @@ public class StudentRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String Student_name = request.getParameter("studentName");
-        String Student_email = request.getParameter("studentEmail");
-        String Student_role = request.getParameter("studentRole");
-        String Student_password = request.getParameter("studentPassword");
-          if (!PasswordValidator.isValidPassword(Student_password)) {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+
+        // Validate password match
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("error", "Passwords do not match");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("studentregister.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+            if (!PasswordValidator.isValidPassword(password)) {
             request.setAttribute("error", PasswordValidator.getPasswordRequirements());
             RequestDispatcher dispatcher = request.getRequestDispatcher("studentregister.jsp");
             dispatcher.forward(request, response);
             return;
         }
-        Student stu=new Student(Student_name,Student_email,Student_role,Student_password);
-// Student stu=new Student("kanak","kanakagrawal437@gmail.com","student","kanak");
-         boolean isRegistered=studentService.registerStudent(stu);
-           if (isRegistered) {
-            response.sendRedirect("studentlogin.jsp"); // Redirect to success page after registration
-        } else {
-            response.sendRedirect("error.jsp"); // Redirect to error page if registration fails
+
+        Student student = new Student(name, email, role, password);
+        
+          try {
+            // Call the service to handle the registration logic
+            boolean isRegistered = studentService.registerStudent(student); // Assuming your service method is named registerAdmin now
+
+            if (isRegistered) {
+                response.sendRedirect("studentlogin.jsp"); // Redirect to login page after registration
+            } else {
+                request.setAttribute("error", "Registration failed. Please try again.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("studentregister.jsp");
+                dispatcher.forward(request, response);
+            }
+        } catch (RuntimeException e) {
+            request.setAttribute("error", e.getMessage()); // Directly set the message from the RuntimeException
+            RequestDispatcher dispatcher = request.getRequestDispatcher("studentregister.jsp");
+            dispatcher.forward(request, response);
         }
+
+        
     }
 
 }

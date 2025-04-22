@@ -12,7 +12,7 @@ public class AdminService {
     private AdminDao adminDao;
     
     public AdminService() {
-        this.adminDao = new AdminDao(DBconnection.getConnection());
+        this.adminDao = new AdminDao();
     }
     
     public Admin login(int membershipId, String password) {

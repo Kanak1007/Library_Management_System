@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class StudentDao {
 
-    public boolean registerStudent(Student student)  {
+    public boolean registerStudent(Student student) {
         //Connection con=DBconnection.getConnection() ;
         String str = "INSERT INTO STUDENT(name,email,role,password) VALUES(?,?,?,?)";
         try (Connection con = DBconnection.getConnection(); PreparedStatement ps = con.prepareStatement(str, Statement.RETURN_GENERATED_KEYS)) {
@@ -41,40 +41,44 @@ public class StudentDao {
                     }
                 }
 
-            } else {
-                System.out.println("rows didn't get affected");
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage());
             e.printStackTrace();
+            // Check if the exception is due to a unique constraint violation (email)
+            if (e.getMessage().contains("Duplicate entry") && e.getMessage().contains("for key") && e.getMessage().contains("email")) {
+                throw new RuntimeException("Email already exists");
+            } else {
+                throw new RuntimeException("Database error during registration: " + e.getMessage());
+            }
         }
 
         return false;
 
     }
-    public Student loginStudentbyIdandPass(int id,String password) {
-        
-        String query="SELECT * FROM STUDENT WHERE membership_id=? and password=?";
-        
-         try(Connection conn=DBconnection.getConnection();PreparedStatement ps=conn.prepareStatement(query)){
-           ps.setInt(1, id);
+
+    public Student loginStudentbyIdandPass(int id, String password) {
+
+        String query = "SELECT * FROM STUDENT WHERE membership_id=? and password=?";
+
+        try (Connection conn = DBconnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, id);
             ps.setString(2, password);
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                Student stu=new Student();
-               stu.setName(rs.getString("name"));
-               stu.setEmail(rs.getString("email"));
-               stu.setMembershipId(rs.getInt("membership_id"));
-               stu.setRole(rs.getString("role"));
-               stu.setPassword(rs.getString("password"));
-               System.err.println("Student Login Check: " + stu.getEmail());
-                           return stu;
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Student stu = new Student();
+                stu.setName(rs.getString("name"));
+                stu.setEmail(rs.getString("email"));
+                stu.setMembershipId(rs.getInt("membership_id"));
+                stu.setRole(rs.getString("role"));
+                stu.setPassword(rs.getString("password"));
+                System.err.println("Student Login Check: " + stu.getEmail());
+                return stu;
             }
 
-         }
-         catch(SQLException e){
-             System.out.println("there is some error here..");
-         }
+        } catch (SQLException e) {
+            System.out.println("there is some error here..");
+        }
         return null;
     }
 
