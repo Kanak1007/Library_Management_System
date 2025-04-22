@@ -22,6 +22,7 @@ com\webkorps\librarymanagement\dao\ReturnBookDao.class
 com\webkorps\librarymanagement\controller\Books\GetAvailableBooks.class
 com\webkorps\librarymanagement\controller\Issue\ReturnBookServlet.class
 com\webkorps\librarymanagement\controller\Books\FindBookToUpdate.class
+com\webkorps\librarymanagement\controller\Issue\ViewIssuedBooksServlet.class
 com\webkorps\librarymanagement\controller\Books\AddBook.class
 com\webkorps\librarymanagement\controller\Issue\IssueBookServlet.class
 com\webkorps\librarymanagement\dao\StudentDao.class

@@ -202,7 +202,7 @@
         </style>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="studentnav.jsp" %>
         
         <div class="container">
             <h2>My Issued Books</h2>

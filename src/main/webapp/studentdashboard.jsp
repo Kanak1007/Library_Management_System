@@ -313,7 +313,7 @@
                 <h2>Library System</h2>
             </div>
             <div class="student-info">
-                          <h3><%= student.getName() %></h3>
+                          <h3>Student name:<%= student.getName() %></h3>
                 <h3>Student ID: <%= student.getMembershipId() %></h3>
             </div>
             <ul class="nav-menu">

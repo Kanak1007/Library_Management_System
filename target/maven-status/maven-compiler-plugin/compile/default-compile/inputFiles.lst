@@ -29,6 +29,6 @@ C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src
 C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\utility\PasswordValidator.java
 C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\controller\Student\StudentRegister.java
 C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\controller\Books\AddBook.java
-C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\controller\Books\ViewBook.java
 C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\model\Admin.java
 C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\dao\AdminDao.java
+C:\Users\kanak\OneDrive\Documents\NetBeansProjects\Library_Management_System\src\main\java\com\webkorps\librarymanagement\controller\Issue\ViewIssuedBooksServlet.java
