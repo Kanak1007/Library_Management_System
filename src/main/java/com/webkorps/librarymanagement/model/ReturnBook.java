@@ -90,4 +90,18 @@ public class ReturnBook {
     public void setStatus(String status) {
         this.status = status;
     }
+    @Override
+public String toString() {
+    return "ReturnBook{" +
+            "returnId=" + returnId +
+            ", issueId=" + issueId +
+            ", bookId=" + bookId +
+            ", studentId=" + studentId +
+            ", issueDate=" + issueDate +
+            ", returnDate=" + returnDate +
+            ", actualReturnDate=" + actualReturnDate +
+            ", status='" + status + '\'' +
+            '}';
+}
+
 } 
