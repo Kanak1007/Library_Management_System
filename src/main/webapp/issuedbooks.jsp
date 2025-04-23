@@ -200,6 +200,8 @@
                 color: white;
             }
         </style>
+          
+ 
     </head>
     <body>
         <%@include file="studentnav.jsp" %>
@@ -221,6 +223,7 @@
                         boolean isOverdue = (boolean) book.get("isOverdue");
                         String statusClass = isOverdue ? "overdue" : (daysRemaining <= 3 ? "due-soon" : "normal");
                         String statusText = isOverdue ? "Overdue" : (daysRemaining <= 3 ? "Due Soon" : "On Time");
+                        int issueId = (Integer) book.get("issueId");
                     %>
                         <div class="book-card">
                             <div class="book-details">
@@ -242,13 +245,14 @@
                                     <%= statusText %> (<%= Math.abs(daysRemaining) %> days)
                                 </div>
                                 <div class="book-actions">
-                                    <% if (!isOverdue) { %>
-                                    
-                                        <a href="RenewBook?issueId=<%= book.get("issueId") %>" 
-                                           class="btn-action btn-renew">
+                                                                  <% if (!isOverdue) { %>
+                                                                  <a href="#"  
+                                           class="btn-action btn-renew"
+                                           onclick="return checkRenewDays(<%= book.get("daysRemaining") %>,<%= issueId %>)">
                                             <i class="fas fa-redo"></i> Renew Book
                                         </a>
                                     <% } %>
+
                                     <a href="ReturnBook?issueId=<%= book.get("issueId") %>" 
                                        class="btn-action btn-return">
                                         <i class="fas fa-undo"></i> Return Book
@@ -260,11 +264,72 @@
                 </div>
             <% } %>
         </div>
+        
+        <!-- Renew Book Modal -->
+        <div class="modal fade" id="renewModal" tabindex="-1" aria-labelledby="renewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="renewModalLabel">Renew Book</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="renewForm" action="RenewBookServlet" method="POST">
+                        <div class="modal-body">
+                            <input type="hidden" id="issueId" name="issueId">
+                            <div class="mb-3">
+                                <label for="renewDate" class="form-label">New Return Date</label>
+                                <input type="date" class="form-control" id="renewDate" name="returnDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="issueDate" class="form-label">Issue Date</label>
+                                <input type="date" class="form-control" id="issueDate" name="issueDate" readonly>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Renew Book</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+        <script>
+            function checkRenewDays(daysRemaining, issueId) {
+                if (daysRemaining > 1) {
+                    alert("You can only renew a book within 1 day of the return date.");
+                    return false;
+                } else {
+                    // Set today's date as the issue date
+                    const today = new Date();
+                    const issueDateInput = document.getElementById('issueDate');
+                    issueDateInput.value = today.toISOString().split('T')[0];
+                    
+                    // Set minimum return date (tomorrow)
+                    const tomorrow = new Date(today);
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    const renewDateInput = document.getElementById('renewDate');
+                    renewDateInput.min = tomorrow.toISOString().split('T')[0];
+                    
+                    // Set maximum return date (30 days from today)
+                    const maxDate = new Date(today);
+                    maxDate.setDate(maxDate.getDate() + 30);
+                    renewDateInput.max = maxDate.toISOString().split('T')[0];
+                    
+                    // Set the issue ID
+                    document.getElementById('issueId').value = issueId;
+                    
+                    // Show the modal
+                    const renewModal = new bootstrap.Modal(document.getElementById('renewModal'));
+                    renewModal.show();
+                    return false;
+                }
+            }
+        </script>
         <a href="studentdashboard.jsp" class="back-btn" title="Back to Dashboard">
             <i class="fas fa-arrow-left"></i>
         </a>
-
+  
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html> 

@@ -106,6 +106,7 @@
     </style>
 </head>
 <body>
+       <%--<%@include file="navbar.jsp" %>--%>
     <div class="book-box">
         <div class="book-header">
             <h2>Enter Book ID</h2>

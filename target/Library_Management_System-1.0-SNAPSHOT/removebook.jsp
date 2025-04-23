@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-
+   <%--<%@include file="navbar.jsp" %>--%>
 <div class="container">
     <h2>Remove Book</h2>
      <% if (request.getAttribute("success") != null) { %>

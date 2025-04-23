@@ -253,7 +253,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-update">Update Book</button>
-                <a href="GetAllBooks" class="btn btn-back">Back to List</a>
+                <a href="GetAllBooksForAdmin" class="btn btn-back">Back to List</a>
             </form>
         </div>
     </div>

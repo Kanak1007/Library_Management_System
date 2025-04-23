@@ -104,7 +104,9 @@
           <li class="nav-item"><a class="nav-link" href="viewbooks.jsp"><i class="fas fa-eye"></i> View All Books</a></li>
           <li class="nav-item"><a class="nav-link" href="removebook.jsp"><i class="fas fa-trash-alt"></i> Delete Books</a></li>
           <li class="nav-item"><a class="nav-link" href="updatebook.jsp"><i class="fas fa-edit"></i> Update Books</a></li>
+             <li class="nav-item"><a class="nav-link" href="GetAllIssuedBooks"><i class="fas fa-eye"></i> View All Issued Books</a></li>
           <li class="nav-item"><a class="nav-link" href="index.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        
         </ul>
       </div>
     </div>
@@ -112,7 +114,8 @@
 
   <!-- Dashboard -->
   <div class="container mt-5">
-    <h2 class="text-center text-dark mb-5"> Welcome to Admin Panel</h2>
+  <h2 class="text-center text-dark mb-5">Welcome to ${sessionScope.adminname}'s Admin Panel</h2>
+
 
     <!-- Action Cards -->
     <div class="row g-4">
@@ -158,17 +161,22 @@
         </div>
       </div>
 
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <i class="fas fa-book-reader"></i>
+            <h5 class="mt-3">View Issued Books</h5>
+            <p>See all books currently issued to students.</p>
+            <a href="GetAllIssuedBooks" class="btn btn-custom">View</a>
+          </div>
+        </div>
+      </div>
+        
       <div class="col-md-4">
         <div class="stats-box">
           <h3>Total Books</h3>
-          <p>${totalBooks}</p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="stats-box">
-          <h3>Books Issued</h3>
-          <p>${issuedBooks}</p>
+          <h1>${totalBooks}</h1>
         </div>
       </div>
     </div>

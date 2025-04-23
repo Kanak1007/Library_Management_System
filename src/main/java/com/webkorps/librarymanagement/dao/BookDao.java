@@ -276,4 +276,51 @@ public class BookDao {
         return books;
     }
 
+    public int getAvailableBookCount() {
+        String sql = "SELECT COUNT(*) FROM book WHERE quantity > 0";
+        
+        try (Connection conn = DBconnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("BookDao: Error getting available book count - " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return 0;
+    }
+
+    public List<Book> getZeroQuantityBooks() {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM book WHERE quantity = 0";
+        
+        try (Connection connection = DBconnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet set = statement.executeQuery()) {
+
+            while (set.next()) {
+                String name = set.getString("name");
+                String author = set.getString("author");
+                String edition = set.getString("edition");
+                int quantity = set.getInt("quantity");
+                int id = set.getInt("book_id");
+                String imagePath = set.getString("image_path");
+                
+                Book book = new Book(name, author, edition, quantity, imagePath);
+                book.setBookId(id);
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("BookDao: Error getting zero quantity books - " + e.getMessage());
+            e.printStackTrace();
+        }
+        return books;
+    }
+
 }

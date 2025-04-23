@@ -1,10 +1,22 @@
 <%@ page import="com.webkorps.librarymanagement.model.Student" %>
 <%
+    // Forward to the servlet to get dashboard data if not already set
+    if (request.getAttribute("availableBooks") == null) {
+        request.getRequestDispatcher("/StudentDashboardData").forward(request, response);
+        return;
+    }
+
     Student student = (Student) session.getAttribute("student");
     if (student == null) {
         response.sendRedirect("studentlogin.jsp");
         return;
     }
+
+    // Get the dashboard data
+    int availableBooks = (Integer) request.getAttribute("availableBooks");
+    int totalIssued = (Integer) request.getAttribute("totalIssued");
+    int dueSoon = (Integer) request.getAttribute("dueSoon");
+    int overdue = (Integer) request.getAttribute("overdue");
 %>
 <!DOCTYPE html>
 <html>
@@ -318,7 +330,7 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="studentdashboard.jsp" class="nav-link active">
                         <i class="fas fa-home"></i> Dashboard
                     </a>
                 </li>
@@ -333,18 +345,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="ViewZeroQuantityBooks" class="nav-link">
+                        <i class="fas fa-paper-plane"></i> Request Books
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="ViewIssuedBooks" class="nav-link">
                         <i class="fas fa-list"></i> My Issued Books
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-redo"></i> Renew Book
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-undo"></i> Return Book
+                    <a href="GetReturnBooks" class="nav-link">
+                        <i class="fas fa-book"></i> View Returned Books
                     </a>
                 </li>
             </ul>
@@ -363,30 +375,30 @@
                 <div class="card">
                     <i class="fas fa-book"></i>
                     <h3>Available Books</h3>
-                    <div class="count">150</div>
-                    <p>Browse our collection</p>
+                    <p class="count"><%= availableBooks %></p>
+                    <p>Books ready to be borrowed</p>
                 </div>
                 <div class="card">
                     <i class="fas fa-book-reader"></i>
                     <h3>Books Issued</h3>
-                    <div class="count">3</div>
+                    <p class="count"><%= totalIssued %></p>
                     <p>Currently borrowed books</p>
                 </div>
                 <div class="card">
                     <i class="fas fa-clock"></i>
                     <h3>Due Soon</h3>
-                    <div class="count">1</div>
+                    <p class="count"><%= dueSoon %></p>
                     <p>Books due within 3 days</p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-exclamation-circle"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
                     <h3>Overdue</h3>
-                    <div class="count">0</div>
-                    <p>Books past due date</p>
+                    <p class="count"><%= overdue %></p>
+                    <p>Books past their due date</p>
                 </div>
             </div>
 
-            <div class="recent-activity">
+<!--            <div class="recent-activity">
                 <h2>Recent Activity</h2>
                 <div class="activity-item">
                     <div class="activity-icon">
@@ -415,7 +427,7 @@
                         <p>1 week agoNew due date in 2 weeks</p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </body>

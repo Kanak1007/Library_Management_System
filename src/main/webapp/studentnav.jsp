@@ -28,11 +28,6 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="StudentProfile">
-                        <i class="fas fa-user"></i> Profile
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="Logout">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>

@@ -28,7 +28,7 @@ public class GetAvailableBooks extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("studentid") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("studentlogin.jsp");
             return;
         }
         
