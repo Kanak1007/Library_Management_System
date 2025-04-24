@@ -50,6 +50,7 @@
                 <i class="fas fa-exclamation-circle"></i> <%= request.getAttribute("error") %>
             </div>
         <% } %>
+   <!--<form action="${pageContext.request.contextPath}/RemoveBook" method="post">-->
     <form action="RemoveBook" method="post">
         <div class="mb-3">
             <label class="form-label">Book ID</label>

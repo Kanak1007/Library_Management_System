@@ -3,6 +3,7 @@ package com.webkorps.librarymanagement.controller.Admin;
 import com.webkorps.librarymanagement.service.AdminService;
 import com.webkorps.librarymanagement.utility.PasswordValidator;
 import com.webkorps.librarymanagement.model.*;
+import com.webkorps.librarymanagement.utility.EmailValidator;
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -36,6 +37,13 @@ public class AdminRegister extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
+        if (!EmailValidator.isValidEmail(email)) {
+         request.setAttribute("error", EmailValidator.getEmailRequirements());
+         RequestDispatcher dispatcher = request.getRequestDispatcher("adminregister.jsp");
+          dispatcher.forward(request, response);
+           return;
+}
+
 
         Admin admin = new Admin(adminName, libraryName, address, email, role, password);
 

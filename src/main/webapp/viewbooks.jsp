@@ -171,6 +171,16 @@
         
         <div class="container">
             <h2>Library Books Collection</h2>
+               <% if (request.getAttribute("success") != null) { %>
+            <div class="success-msg mb-3">
+                <i class="fas fa-exclamation-circle"></i> <%= request.getAttribute("success") %>
+            </div>
+        <% } %>
+             <% if (request.getAttribute("error") != null) { %>
+            <div class="success-msg mb-3">
+                <i class="fas fa-exclamation-circle"></i> <%= request.getAttribute("error") %>
+            </div>
+        <% } %>
             
             <!-- Search Form -->
             <div class="search-container">
@@ -195,6 +205,9 @@
                             <div class="book-title"><%= book.getBookName() %></div>
                             <div class="book-info">
                                 <i class="fas fa-user"></i> <%= book.getBookAuthor() %>
+                            </div>
+                                <div class="book-info">
+                                <i class="fa fa-id-card"></i> <%= book.getBookId() %>
                             </div>
                             <div class="book-info">
                                 <i class="fas fa-layer-group"></i> Edition: <%= book.getBookEdition() %>

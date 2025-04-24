@@ -38,7 +38,7 @@ public class AdminLogin extends HttpServlet {
             session.setAttribute("adminname", admin.getAdminName()); // Store admin name in session
             session.setAttribute("adminId", admin.getMembershipId()); // Store admin ID in session
            session.setAttribute("admin", admin);  // This line is crucial
-
+           session.setAttribute("userrole", "admin");
             response.sendRedirect("AdminDashboardServlet");
         } else {
             request.setAttribute("error", "Invalid Membership ID or Password");

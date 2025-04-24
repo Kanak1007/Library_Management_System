@@ -6,6 +6,7 @@ package com.webkorps.librarymanagement.controller.Student;
 
 import com.webkorps.librarymanagement.model.Student;
 import com.webkorps.librarymanagement.service.StudentService;
+import com.webkorps.librarymanagement.utility.EmailValidator;
 import com.webkorps.librarymanagement.utility.PasswordValidator;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -57,6 +58,12 @@ public class StudentRegister extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
+             if (!EmailValidator.isValidEmail(email)) {
+    request.setAttribute("error", EmailValidator.getEmailRequirements());
+    RequestDispatcher dispatcher = request.getRequestDispatcher("adminregister.jsp");
+    dispatcher.forward(request, response);
+    return;
+}
 
         Student student = new Student(name, email, role, password);
         

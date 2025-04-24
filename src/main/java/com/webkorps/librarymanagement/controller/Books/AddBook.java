@@ -55,7 +55,7 @@ public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       
         String bookName = request.getParameter("bookname");
         String bookAuthor = request.getParameter("bookauthor");
         String bookEdition = request.getParameter("bookedition");

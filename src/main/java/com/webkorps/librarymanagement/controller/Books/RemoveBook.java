@@ -50,9 +50,11 @@ public class RemoveBook extends HttpServlet {
             throws ServletException, IOException {
       String name=request.getParameter("bookId");
         int bookId=Integer.parseInt(name);
-      // 
+        
+      System.out.println("Here is my bookid:-   "+bookId);
+      
         Boolean isDeleted=bookservice.DeleteBook(bookId);
-       
+      
 
         if(isDeleted){
 //           response.sendRedirect("success.jsp");

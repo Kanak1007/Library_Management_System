@@ -13,7 +13,7 @@
                     <a class="nav-link" href="addbook.jsp">Add Book</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="GetAllBooks">View Books</a>
+                    <a class="nav-link" href="GetAllBooksForAdmin">View Books</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="removebook.jsp">Remove Book</a>
@@ -23,7 +23,7 @@
                 <span class="text-light me-3">
                     <i class="fas fa-user"></i> ${sessionScope.adminname} (ID: ${sessionScope.adminId})
                 </span>
-                <a href="AdminLogout" class="btn btn-outline-light">
+                <a href="Logout" class="btn btn-outline-light">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>

@@ -119,7 +119,7 @@ public class UpdateBook extends HttpServlet {
             
             if (updateBook) {
                 request.setAttribute("success", "Book updated successfully!");
-                response.sendRedirect(request.getContextPath() + "/GetAllBooks");
+                response.sendRedirect(request.getContextPath() + "/GetAllBooksForAdmin");
             } else {
                 request.setAttribute("error", "Failed to update book. Please try again.");
                 request.getRequestDispatcher("updatebook.jsp").forward(request, response);

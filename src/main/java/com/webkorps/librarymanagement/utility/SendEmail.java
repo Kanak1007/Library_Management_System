@@ -1,13 +1,13 @@
 package com.webkorps.librarymanagement.utility;
+
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
-
 import java.util.Properties;
 
 public class SendEmail {
 
-    public static void sendEmail(String to, String subject, String body) {
+    public static boolean sendEmail(String to, String subject, String body) {
         final String senderEmail = "kanakagrawal0710@gmail.com";
         final String senderPassword = "zktkmtrutxyeabtm";
 
@@ -30,8 +30,11 @@ public class SendEmail {
             message.setSubject(subject);
             message.setText(body);
             Transport.send(message);
-        } catch (Exception e) {
+            return true; // Email sent successfully
+        } catch (MessagingException e) {
+            System.err.println("Failed to send email to " + to);
             e.printStackTrace();
+            return false; // Email failed to send
         }
     }
 }

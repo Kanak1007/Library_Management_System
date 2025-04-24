@@ -398,36 +398,7 @@
                 </div>
             </div>
 
-<!--            <div class="recent-activity">
-                <h2>Recent Activity</h2>
-                <div class="activity-item">
-                    <div class="activity-icon">
-                        <i class="fas fa-book-reader"></i>
-                    </div>
-                    <div class="activity-details">
-                        <h4>Issued: The Great Gatsby</h4>
-                        <p>2 days ago • Due in 12 days</p>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon">
-                        <i class="fas fa-undo"></i>
-                    </div>
-                    <div class="activity-details">
-                        <h4>Returned: To Kill a Mockingbird</h4>
-                        <p>5 days ago</p>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon">
-                        <i class="fas fa-redo"></i>
-                    </div>
-                    <div class="activity-details">
-                        <h4>Renewed: 1984</h4>
-                        <p>1 week agoNew due date in 2 weeks</p>
-                    </div>
-                </div>
-            </div>-->
+
         </div>
     </div>
 </body>

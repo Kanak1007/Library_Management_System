@@ -28,7 +28,7 @@ public class ViewIssuedBooksServlet extends HttpServlet {
         
         if (session == null || session.getAttribute("studentid") == null) {
             System.out.println("ViewIssuedBooksServlet: No valid session found");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("studentlogin.jsp");
             return;
         }
 

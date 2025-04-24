@@ -37,7 +37,7 @@ public class StudentLogin extends HttpServlet {
         Student stu=studentservice.loginStudent(Id,Password);
  
         if(stu==null){
-            request.setAttribute("ERROR","Invalid membershipid and password");
+            request.setAttribute("error","Invalid membershipid and password");
             RequestDispatcher rd=request.getRequestDispatcher("studentlogin.jsp");
             rd.forward(request, response);
         }
@@ -48,6 +48,7 @@ public class StudentLogin extends HttpServlet {
             session.setAttribute("email",stu.getEmail());
             session.setAttribute("password",stu.getPassword());
             session.setAttribute("studentid", stu.getMembershipId());
+                session.setAttribute("userrole", "student");
             session.setAttribute("student",stu);
             response.sendRedirect("StudentDashboardData");
         }

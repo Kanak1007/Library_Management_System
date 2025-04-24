@@ -32,6 +32,7 @@ public class RenewBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            doPost(request,response);
             
     }
 
@@ -60,23 +61,23 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
        {        
             request.getSession().setAttribute("error", "Cannot renew. A request for this book is already pending by another student.");
-            response.sendRedirect("ViewIssuedBooks");
+             response.sendRedirect("issuedbooks.jsp");
             return;
         }
 
         // Proceed to renew
         boolean success = issuebookdao.renewBook(issueId, issueDate, returnDate);
         if (success) {
-            request.getSession().setAttribute("message", "Book renewed successfully!");
+            request.getSession().setAttribute("success", "Book renewed successfully!");
         } else {
             request.getSession().setAttribute("error", "Failed to renew book. Please try again.");
         }
-        response.sendRedirect("ViewIssuedBooks");
+     response.sendRedirect("issuedbooks.jsp");
 
     } catch (Exception e) {
         e.printStackTrace();
         request.getSession().setAttribute("error", "An error occurred while renewing the book.");
-        response.sendRedirect("ViewIssuedBooks");
+        response.sendRedirect("issuedbooks.jsp");
     }
 }
 

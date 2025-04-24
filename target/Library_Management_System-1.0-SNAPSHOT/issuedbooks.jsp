@@ -208,6 +208,29 @@
         
         <div class="container">
             <h2>My Issued Books</h2>
+            <%
+    String successMsg = (String) session.getAttribute("success");
+    String errorMsg = (String) session.getAttribute("error");
+if (successMsg != null) {
+%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= successMsg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<%
+        session.removeAttribute("success");
+    }
+    if (errorMsg != null) {
+%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= errorMsg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<%
+        session.removeAttribute("error");
+    }
+%>
+
             
             <% if (issuedBooks.isEmpty()) { %>
                 <div class="empty-state">
@@ -331,5 +354,18 @@
         </a>
   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+       
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+    // Auto-dismiss alerts after 3 seconds
+    setTimeout(function () {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function (alert) {
+            var bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+            bsAlert.close();
+        });
+    }, 3000);
+</script>
     </body>
 </html> 

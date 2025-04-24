@@ -13,7 +13,6 @@ com\webkorps\librarymanagement\controller\Student\StudentLogin.class
 com\webkorps\librarymanagement\model\IssueBook.class
 com\webkorps\librarymanagement\model\ReturnBook.class
 com\webkorps\librarymanagement\utility\DBconnection.class
-com\webkorps\librarymanagement\controller\Issue\IssueRequestedBook.class
 com\webkorps\librarymanagement\model\Book.class
 com\webkorps\librarymanagement\controller\Issue\GetAllIssuedBooksServlet.class
 com\webkorps\librarymanagement\controller\Admin\Logout.class
@@ -26,6 +25,8 @@ com\webkorps\librarymanagement\controller\Books\GetReturnBooksServlet.class
 com\webkorps\librarymanagement\dao\ReturnBookDao.class
 com\webkorps\librarymanagement\model\BookRequest.class
 com\webkorps\librarymanagement\controller\Issue\ViewZeroQuantityBooksServlet.class
+com\webkorps\librarymanagement\filter\StudentFilter.class
+com\webkorps\librarymanagement\filter\AdminFilter.class
 com\webkorps\librarymanagement\controller\Books\GetAvailableBooks.class
 com\webkorps\librarymanagement\controller\Issue\ReturnBookServlet.class
 com\webkorps\librarymanagement\controller\Books\FindBookToUpdate.class
@@ -34,6 +35,7 @@ com\webkorps\librarymanagement\controller\Books\AddBook.class
 com\webkorps\librarymanagement\controller\Issue\IssueBookServlet.class
 com\webkorps\librarymanagement\dao\StudentDao.class
 com\webkorps\librarymanagement\controller\Student\StudentRegister.class
+com\webkorps\librarymanagement\utility\EmailValidator.class
 com\webkorps\librarymanagement\controller\Issue\RenewBookServlet.class
 com\webkorps\librarymanagement\controller\Admin\AdminDashboardServlet.class
 com\webkorps\librarymanagement\model\Admin.class
