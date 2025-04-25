@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +30,13 @@ public class RemoveBook extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        
+         HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("adminId") == null) {
+            response.sendRedirect("adminlogin.jsp");
+            return;
+        }
      
       String name=request.getParameter("bookId");
         int bookId=Integer.parseInt(name); 
@@ -48,6 +56,11 @@ public class RemoveBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("adminId") == null) {
+            response.sendRedirect("adminlogin.jsp");
+            return;
+        }
       String name=request.getParameter("bookId");
         int bookId=Integer.parseInt(name);
         

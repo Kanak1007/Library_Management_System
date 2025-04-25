@@ -20,6 +20,8 @@ public class GetReturnBooksServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         
         try {
             // Get student ID from session
             Integer studentId = (Integer) request.getSession().getAttribute("studentid");

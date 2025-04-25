@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -27,6 +28,11 @@ public class GetAllBooksForAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("adminId") == null) {
+            response.sendRedirect("adminlogin.jsp");
+            return;
+        }
         List<Book> booklist = bookservice.getAllBooks();
         request.setAttribute("books", booklist);
         request.getRequestDispatcher("viewbooks.jsp").forward(request, response);

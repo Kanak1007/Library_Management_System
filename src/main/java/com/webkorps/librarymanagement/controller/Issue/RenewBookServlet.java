@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -45,6 +46,13 @@ public class RenewBookServlet extends HttpServlet {
 protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     try {
+
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("studentid") == null) {
+            response.sendRedirect("studentlogin.jsp");
+            return;
+        }
+
         int issueId = Integer.parseInt(request.getParameter("issueId"));
         String issueDate = request.getParameter("issueDate");
         String returnDate = request.getParameter("returnDate");

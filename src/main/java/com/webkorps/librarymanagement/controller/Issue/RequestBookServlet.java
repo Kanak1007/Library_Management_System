@@ -28,10 +28,15 @@ public class RequestBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("studentid") == null) {
+            response.sendRedirect("studentlogin.jsp");
+            return;
+        }
         // Set content type to JSON
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
         Student student = (Student) session.getAttribute("student");
 
         if (student == null) {

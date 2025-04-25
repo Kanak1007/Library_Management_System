@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +56,11 @@ public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("adminId") == null) {
+            response.sendRedirect("adminlogin.jsp");
+            return;
+        }
        
         String bookName = request.getParameter("bookname");
         String bookAuthor = request.getParameter("bookauthor");

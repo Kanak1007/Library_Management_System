@@ -105,7 +105,7 @@
           <li class="nav-item"><a class="nav-link" href="removebook.jsp"><i class="fas fa-trash-alt"></i> Delete Books</a></li>
           <li class="nav-item"><a class="nav-link" href="updatebook.jsp"><i class="fas fa-edit"></i> Update Books</a></li>
              <li class="nav-item"><a class="nav-link" href="GetAllIssuedBooks"><i class="fas fa-eye"></i> View All Issued Books</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.jsp"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         
         </ul>
       </div>

@@ -29,15 +29,16 @@ public class IssueBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+     
         System.out.println("IssueBookServlet: Starting doPost method");
-        HttpSession session = request.getSession(false);
+      HttpSession session = request.getSession(false);
         String nextPage = "issuebook.jsp";
         
         try {
             // Check if student is logged in
             if (session == null || session.getAttribute("studentid") == null) {
                 System.out.println("IssueBookServlet: No valid session found");
-                nextPage = "login.jsp";
+                nextPage = "studentlogin.jsp";
             } else {
                 // Get parameters from request
                 String bookIdStr = request.getParameter("bookId");

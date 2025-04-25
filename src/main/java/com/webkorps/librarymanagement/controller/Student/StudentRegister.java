@@ -60,7 +60,7 @@ public class StudentRegister extends HttpServlet {
         }
              if (!EmailValidator.isValidEmail(email)) {
     request.setAttribute("error", EmailValidator.getEmailRequirements());
-    RequestDispatcher dispatcher = request.getRequestDispatcher("adminregister.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("studentregister.jsp");
     dispatcher.forward(request, response);
     return;
 }
